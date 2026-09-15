@@ -1,8 +1,10 @@
 import { ActionIcon, Box, Flex, Text } from "@mantine/core";
 import { SignOutIcon } from "@phosphor-icons/react";
 import ThemeButton from "../ui/ThemeButton";
+import { useAuth } from "../../features/user/user.context";
 
 export default function Navbar() {
+  const { logout } = useAuth();
   return (
     <Flex
       px={"10px"}
@@ -19,7 +21,7 @@ export default function Navbar() {
       <Box></Box>
       <Flex gap={"xs"}>
         <ThemeButton />
-        <ActionIcon size={"lg"} variant="outline">
+        <ActionIcon onClick={logout} size={"lg"} variant="outline">
           <SignOutIcon />
         </ActionIcon>
       </Flex>
