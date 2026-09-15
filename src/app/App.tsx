@@ -6,6 +6,7 @@ import { routes } from "../lib/routes";
 import AdminLayout from "../layouts/AdminLayout";
 import { PATHS } from "../lib/paths";
 import LoadingPage from "../pages/loading/page";
+import PublicRoute from "../components/auth/PublicRoute";
 
 const LoginPage = lazy(() => import("../pages/login/page"));
 
@@ -13,7 +14,14 @@ function App() {
   return (
     <Suspense fallback={<LoadingPage />}>
       <Switch>
-        <Route path={PATHS.LOGIN} component={LoginPage} />
+        <Route
+          path={PATHS.LOGIN}
+          component={() => (
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          )}
+        />
         {routes.map((route) => {
           return (
             <Route
