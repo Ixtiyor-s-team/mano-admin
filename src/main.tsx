@@ -15,7 +15,11 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <MantineProvider theme={theme}>
         <UserProvider>
-          <Notifications />
+          <Notifications
+            style={{
+              zIndex: 1001, //loading overlay ni ustidan korinishi un
+            }}
+          />
           <App />
         </UserProvider>
       </MantineProvider>
