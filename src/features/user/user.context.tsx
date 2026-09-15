@@ -1,4 +1,3 @@
-"use client";
 import React, { createContext, useContext } from "react";
 import Cookies from "js-cookie";
 import Dotenv from "../../lib/dotenv";
@@ -8,7 +7,6 @@ import {
   useGetUserId,
   usePostUserVerify,
 } from "../../api/generated";
-import { getUserIdFromToken } from "../../lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import type { ResponseUserResponse } from "../../api/model";
 
@@ -24,15 +22,16 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 interface UserProviderProps {
   children: React.ReactNode;
 }
-
+const isProd = Dotenv.NODE_ENV === "production";
 export const UserProvider = ({ children }: UserProviderProps) => {
   const queryClient = useQueryClient();
-  const access_token = Cookies.get("access_token");
-  const userId = access_token ? getUserIdFromToken(access_token) : null;
+  const localstorageUser = localStorage.getItem("user");
+  const userId = localstorageUser ? JSON.parse(localstorageUser).id : null;
   const { mutate, isPending } = usePostUserVerify();
   const { data, isLoading } = useGetUserId(userId ?? "", {
     query: {
-      enabled: !!userId && !!access_token,
+      enabled: Boolean(userId),
+      retry: false,
     },
   });
 
@@ -52,14 +51,14 @@ export const UserProvider = ({ children }: UserProviderProps) => {
           Cookies.set("access_token", access_token!, {
             expires: expires_in! / 86400,
             path: "/",
-            secure: Dotenv.NODE_ENV === "production",
+            secure: isProd,
             sameSite: "lax",
           });
 
           Cookies.set("refresh_token", refresh_token!, {
             expires: refresh_expires_in! / 86400,
             path: "/",
-            secure: Dotenv.NODE_ENV === "production",
+            secure: isProd,
             sameSite: "lax",
           });
 
@@ -91,7 +90,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         loading: isLoading,
         logout,
         login,
-        user: data,
+        user: data ?? undefined,
         mutationPending: isPending,
       }}
     >
