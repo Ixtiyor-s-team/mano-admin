@@ -1,4 +1,5 @@
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 import { routes } from "../lib/routes";
