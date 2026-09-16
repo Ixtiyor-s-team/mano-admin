@@ -1,14 +1,16 @@
 import React from "react";
 import Sidebar from "../components/shared/Sidebar";
 import Navbar from "../components/shared/Navbar";
-import { Box } from "@mantine/core";
+import { Box, Drawer } from "@mantine/core";
 import ProtectedRoute from "../components/auth/ProtectedRoute";
+import { useDisclosure } from "@mantine/hooks";
 
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [opened, { open, close }] = useDisclosure(false);
   return (
     <ProtectedRoute>
       <Box
@@ -20,9 +22,27 @@ export default function AdminLayout({
           justifyItems: "start",
         }}
       >
-        <Sidebar />
+        <Sidebar
+          visibleFrom="md"
+          containerStyle={{ borderRight: "0.5px solid" }}
+          mobile={false}
+        />
+        <Drawer
+          opened={opened}
+          onClose={close}
+          padding={0}
+          withCloseButton={false}
+          hiddenFrom="md"
+          size="auto"
+          styles={{
+            body: { height: "100%", padding: 0 },
+          }}
+        >
+          <Sidebar mobile={true} />
+        </Drawer>
+
         <Box h={"100%"} w={"100%"} flex={1}>
-          <Navbar />
+          <Navbar openSidebar={open} />
           <main style={{ padding: "10px" }}>{children}</main>
         </Box>
       </Box>

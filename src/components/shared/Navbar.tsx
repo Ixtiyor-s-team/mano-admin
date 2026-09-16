@@ -1,9 +1,9 @@
 import { ActionIcon, Box, Flex, Text } from "@mantine/core";
-import { SignOutIcon } from "@phosphor-icons/react";
+import { ListIcon, SignOutIcon } from "@phosphor-icons/react";
 import ThemeButton from "../ui/ThemeButton";
 import { useAuth } from "../../features/user/user.context";
 
-export default function Navbar() {
+export default function Navbar({ openSidebar }: { openSidebar: () => void }) {
   const { logout } = useAuth();
   return (
     <Flex
@@ -16,8 +16,17 @@ export default function Navbar() {
         borderBottom: "0.5px solid",
       }}
     >
-      {/* <Breadcrumbs /> */}
-      <Text size="xl">Navbar</Text>
+      <Flex gap={10}>
+        <ActionIcon
+          hiddenFrom="md"
+          onClick={openSidebar}
+          size={"lg"}
+          variant="outline"
+        >
+          <ListIcon />
+        </ActionIcon>
+        <Text size="xl">Navbar</Text>
+      </Flex>
       <Box></Box>
       <Flex gap={"xs"}>
         <ThemeButton />
