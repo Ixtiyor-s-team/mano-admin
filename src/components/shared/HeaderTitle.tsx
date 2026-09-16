@@ -20,7 +20,7 @@ export default function HeaderTitle({
       style={{
         display: "flex",
         justifyContent: "space-between",
-        marginTop: "10px",
+        margin: "10px 0",
       }}
     >
       <Title>{title}</Title>

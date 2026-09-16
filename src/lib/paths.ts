@@ -1,7 +1,7 @@
 export const PATHS = {
   LOGIN: "/login",
   DASHBOARD: "/",
-  CONTENTS: "/contents",
+  MANGAS: "/manga",
   NOVELS: "/novels",
   GENRES: "/genres",
   CATEGORIES: "/categories",

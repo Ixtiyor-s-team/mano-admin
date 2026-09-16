@@ -44,7 +44,7 @@ export default function AdminLayout({
           <Sidebar mobile={true} />
         </Drawer>
 
-        <Box h={"100%"} w={"100%"} flex={1}>
+        <Box h={"100%"} w={"100%"} flex={1} style={{ overflowY: "auto" }}>
           <Navbar openSidebar={open} />
           <main style={{ padding: "10px" }}>{children}</main>
         </Box>
