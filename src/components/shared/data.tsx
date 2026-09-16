@@ -23,7 +23,7 @@ export const sidebarItems = [
   {
     icon: <FolderIcon />,
     title: "Kontentlar",
-    href: PATHS.CONTENTS,
+    href: PATHS.MANGAS,
   },
   {
     icon: <BookOpenIcon />,
