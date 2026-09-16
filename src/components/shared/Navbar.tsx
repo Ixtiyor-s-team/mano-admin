@@ -13,7 +13,8 @@ export default function Navbar({ openSidebar }: { openSidebar: () => void }) {
       w={"100%"}
       h={"60px"}
       style={{
-        borderBottom: "0.5px solid",
+        borderBottom:
+          "1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-gray-8))",
       }}
     >
       <Flex gap={10}>

@@ -24,7 +24,10 @@ export default function AdminLayout({
       >
         <Sidebar
           visibleFrom="md"
-          containerStyle={{ borderRight: "0.5px solid" }}
+          containerStyle={{
+            borderRight:
+              "1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-gray-8))",
+          }}
           mobile={false}
         />
         <Drawer
