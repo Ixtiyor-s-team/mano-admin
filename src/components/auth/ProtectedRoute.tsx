@@ -6,6 +6,7 @@ type Props = {
   children: React.ReactNode;
 };
 
+const allowedRoles = ["admin", "superadmin", "moderator"];
 export default function ProtectedRoute({ children }: Props) {
   const { user, loading } = useAuth();
 
@@ -15,6 +16,10 @@ export default function ProtectedRoute({ children }: Props) {
 
   if (!user) {
     return <Redirect to="/login" />;
+  }
+
+  if (!allowedRoles.includes(user.role)) {
+    return <Redirect to="/access-denied" />;
   }
 
   return children;
