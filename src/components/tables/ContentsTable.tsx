@@ -1,8 +1,17 @@
-import { ActionIcon, Table } from "@mantine/core";
+import { ActionIcon, Menu, Table } from "@mantine/core";
 import type { ResponseMangaResponse } from "../../api/model";
 import { format } from "date-fns";
 import { defineContentTypeLabel } from "../../lib/utils";
-import { DotsThreeVerticalIcon } from "@phosphor-icons/react";
+import {
+  ChatCircleDotsIcon,
+  DotsThreeVerticalIcon,
+  ListNumbersIcon,
+  PencilIcon,
+  PlusIcon,
+  TrashIcon,
+} from "@phosphor-icons/react";
+import { Link } from "wouter";
+import { PATHS } from "../../lib/paths";
 
 export default function ContentsTable({
   data,
@@ -21,9 +30,46 @@ export default function ContentsTable({
         <Table.Td>{element.chapters_count}</Table.Td>
         <Table.Td>{element.average_rating}</Table.Td>
         <Table.Td>
-          <ActionIcon variant="transparent">
-            <DotsThreeVerticalIcon />
-          </ActionIcon>
+          <Menu shadow="md" width={200} position="bottom">
+            <Menu.Target>
+              <ActionIcon variant="transparent">
+                <DotsThreeVerticalIcon />
+              </ActionIcon>
+            </Menu.Target>
+
+            <Menu.Dropdown>
+              <Menu.Item leftSection={<ChatCircleDotsIcon size={14} />}>
+                Komentariyalar
+              </Menu.Item>
+              <Menu.Item
+                component={Link}
+                href={PATHS.CHAPTERS_MANGA(element.manga_id!)}
+                leftSection={<ListNumbersIcon size={14} />}
+              >
+                Boblar
+              </Menu.Item>
+              <Menu.Item
+                component={Link}
+                href={PATHS.ADD_CHAPTER_MANGA(element.manga_id!)}
+                leftSection={<PlusIcon size={14} />}
+              >
+                Bob qo'shish
+              </Menu.Item>
+              <Menu.Item
+                component={Link}
+                href={PATHS.EDIT_MANGA(element.manga_id!)}
+                leftSection={<PencilIcon size={14} />}
+              >
+                Tahrirlash
+              </Menu.Item>
+
+              <Menu.Divider />
+
+              <Menu.Item color="red" leftSection={<TrashIcon size={14} />}>
+                O'chirish
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
         </Table.Td>
       </Table.Tr>
     );
