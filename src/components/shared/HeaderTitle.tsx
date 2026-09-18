@@ -6,6 +6,7 @@ interface Props {
   buttonText?: string;
   children?: React.ReactNode;
   href?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export default function HeaderTitle({
@@ -13,6 +14,7 @@ export default function HeaderTitle({
   buttonText,
   href,
   children,
+  onClick,
 }: Props) {
   return (
     <Box
@@ -20,6 +22,7 @@ export default function HeaderTitle({
       style={{
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
         margin: "10px 0",
       }}
     >
@@ -30,7 +33,7 @@ export default function HeaderTitle({
             <Button>{buttonText}</Button>
           </Link>
         ) : (
-          <Button>{buttonText}</Button>
+          <Button onClick={onClick}>{buttonText}</Button>
         ))}
     </Box>
   );
