@@ -33,7 +33,7 @@ export default function HeaderTitle({
             <Button>{buttonText}</Button>
           </Link>
         ) : (
-          <Button onClick={onClick}>{buttonText}</Button>
+          buttonText && <Button onClick={onClick}>{buttonText}</Button>
         ))}
     </Box>
   );

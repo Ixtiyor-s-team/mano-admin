@@ -7,10 +7,11 @@ import {
   FolderIcon,
   ListBulletsIcon,
   PackageIcon,
-  PencilLineIcon,
+  PanoramaIcon,
   ShieldCheckIcon,
   ShoppingBagIcon,
   UsersIcon,
+  ImageSquareIcon,
 } from "@phosphor-icons/react";
 import { PATHS } from "../../lib/paths";
 
@@ -25,11 +26,11 @@ export const sidebarItems = [
     title: "Kontentlar",
     href: PATHS.MANGAS,
   },
-  {
-    icon: <BookOpenIcon />,
-    title: "Novellalar",
-    href: PATHS.NOVELS,
-  },
+  // {
+  //   icon: <BookOpenIcon />,
+  //   title: "Novellalar",
+  //   href: PATHS.NOVELS,
+  // },
   {
     icon: <BoundingBoxIcon />,
     title: "Janrlar",
@@ -46,12 +47,12 @@ export const sidebarItems = [
     href: PATHS.NOTIFICATIONS,
   },
   {
-    icon: <PencilLineIcon />,
+    icon: <PanoramaIcon />,
     title: "Bannerlar",
     href: PATHS.BANNERS,
   },
   {
-    icon: <UsersIcon />,
+    icon: <ImageSquareIcon />,
     title: "Avatarlar",
     href: PATHS.AVATARS,
   },
@@ -69,6 +70,11 @@ export const sidebarItems = [
     icon: <PackageIcon />,
     title: "Obuna ta'riflari",
     href: PATHS.SUB_PLANS,
+  },
+  {
+    icon: <UsersIcon />,
+    title: "Foydalanuvchilar",
+    href: PATHS.USERS,
   },
   {
     icon: <UsersIcon />,

@@ -24,4 +24,8 @@ export const theme = createTheme({
     lg: "74em",
     xl: "90em",
   },
+  fontFamily: '"Exo 2", sans-serif',
+  headings: {
+    fontFamily: '"Exo 2", sans-serif',
+  },
 });

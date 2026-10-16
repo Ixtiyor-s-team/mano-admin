@@ -26,3 +26,18 @@ export function defineContentTypeLabel(type: ResponseMangaResponseType) {
       return type;
   }
 }
+
+export function defineUserRoleLabel(type: string) {
+  switch (type) {
+    case "user":
+      return "Foydalanuvchi";
+    case "translator":
+      return "Ijodkor";
+    case "moderator":
+      return "Moderator";
+    case "admin":
+      return "Admin";
+    case "superadmin":
+      return "Superadmin";
+  }
+}
